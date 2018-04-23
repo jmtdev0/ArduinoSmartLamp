@@ -72,15 +72,15 @@ public class LampControl extends AppCompatActivity {
         }
 
         @Override
-        protected Void doInBackground(Void... devices) //while the progress dialog is shown, the connection is done in background
+        protected Void doInBackground(Void... devices)
         {
             try {
                 if (BTSocket == null || !isBtConnected) {
-                    BTAdapter = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-                    BluetoothDevice dispositivo = BTAdapter.getRemoteDevice(MAC_Adress);//connects to the device's address and checks if it's available
-                    BTSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//create a RFCOMM (SPP) connection
+                    BTAdapter = BluetoothAdapter.getDefaultAdapter();
+                    BluetoothDevice dispositivo = BTAdapter.getRemoteDevice(MAC_Adress);
+                    BTSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
-                    BTSocket.connect();//start connection
+                    BTSocket.connect();
                 }
             } catch (IOException e) {
                 ConnectSuccess = false;//if the try failed, you can check the exception here
@@ -233,7 +233,6 @@ public class LampControl extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
 
         menu.add("Sonido activado").setActionView(R.layout.action_layout_checkbox).setCheckable(true).setChecked(this.soundActivated);
         menu.add("Informar de notificaciones").setActionView(R.layout.action_layout_checkbox).setCheckable(true).setChecked(this.notificationMode);
@@ -242,12 +241,10 @@ public class LampControl extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         CharSequence opcionSeleccionada = item.getTitle();
         item.setChecked(!item.isChecked());
-        //noinspection SimplifiableIfStatement
+
         if (opcionSeleccionada.equals("Sonido activado")) {
             changeBuzzerMode();
         } else if (opcionSeleccionada.equals("Informar de notificaciones")) {
@@ -547,17 +544,31 @@ public class LampControl extends AppCompatActivity {
 
     private void checkCommand(String command) {
 
-        if (this.voiceCommands.containsKey(command)) {
+        /* Se comparan todos los comandos guardados en voiceCommands con el que se quiere comprobar sin dar
+           importancia a posibles diferencias entre minúsculas y mayúsculas. */
 
-            String color = this.voiceCommands.get(command).getColor();
+        String searchedCommand = null;
+
+        for (String voiceCommand : this.voiceCommands.keySet()) {
+
+            if (voiceCommand.equalsIgnoreCase(command)) {
+                searchedCommand = voiceCommand;
+                break;
+            }
+
+        }
+
+        if (searchedCommand != null) {
+
+            String color = this.voiceCommands.get(searchedCommand).getColor();
 
             if (!color.equals("Indeterminado")) {
 
-                messageToUser("Comando reconocido: " + command, true);
+                messageToUser("Comando reconocido: " + searchedCommand, true);
                 REDValue = Integer.valueOf(color.substring(0, 3));
                 GREENValue = Integer.valueOf(color.substring(3, 6));
                 BLUEValue = Integer.valueOf(color.substring(6, 9));
-                turnOnLampColor(command, false);
+                turnOnLampColor(searchedCommand, false);
 
                 // La lámpara queda encendida con el color que está asociado al comando reconocido.
 
@@ -566,7 +577,7 @@ public class LampControl extends AppCompatActivity {
 
             } else {
 
-                messageToUser("Se ha reconocido el comando -" + command +
+                messageToUser("Se ha reconocido el comando -" + searchedCommand +
                         "-, pero no se ha escogido un color para él.", true);
 
             }
