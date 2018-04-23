@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Arduino SmartLamp</string>
+    <string name="btnBTSearch">BUSCAR DISPOSITIVOS BLUETOOTH</string>
+    <string name="btnConnectBT">Conectar Bluetooth</string>
+    <string name="btnAddApps">Añadir aplicaciones</string>
+    <string name="btnPickColors">Escoger colores</string>
+    <string name="hello_world">Hello, world!</string>
+    <string name="title_activity_paired">Paired</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main2">Main2Activity</string>
+</resources>

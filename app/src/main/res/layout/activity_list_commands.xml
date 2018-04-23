@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.example.javier.arduinosmartlamp.ListCommands">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppBarOverlay"
+        android:id="@+id/appBarLayout4">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_list_commands"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorAccent"
+            app:popupTheme="@style/PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_list_commands" />
+
+    <ListView
+        android:id="@+id/command_list"
+        android:layout_width="match_parent"
+        android:layout_height="402dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        tools:layout_editor_absoluteY="165dp" />
+
+    <Button
+        android:id="@+id/newCommand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/command_list"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp"
+        android:text="NUEVO COMANDO" />
+
+</RelativeLayout>
