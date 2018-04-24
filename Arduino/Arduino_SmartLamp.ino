@@ -3,9 +3,7 @@
    Práctica obligatoria - Proyecto Arduino SmartLamp
    Grupo 14: Alejandro Manuel Pazos Boquete, Javier Martín Torres, Sergio Mingorance Wagner
 */
-
-//#include "musical_notes.h"
-
+  
 // Declaración de pines, constantes y variables
 
 // Tanto el zumbador como los cables que se conectan a la tira LED están ubicados en pines que pueden operan con señales analógicas.
@@ -135,14 +133,11 @@ void loop() {
 
     if (buzzerOn) { // Si el usuario tiene activado el sonido de la aplicación, el zumbador emite una serie de sonidos.
 
-      //r2D2();
       playBeethoven();
-      //tone(9, 329.63, 300);
 
     }
 
     encenderTiraLED (valorNotiRED, valorNotiGREEN, valorNotiBLUE);
- //   Serial.println(command);
     delay(1000);
 
     if (ledOn) {  // Si la lámpara está encendida, seguirá estándolo.
@@ -168,7 +163,7 @@ void loop() {
 
   command = ""; // Se elimina el contenido de command para evitar bucles indeseados en el código.
 
-}
+} // Fin de loop
 
 void encenderTiraLED () { // Método empleado para que la tira LED emita luz de acuerdo a los valores establecidos en REDValue, GREENValue y BLUEValue.
 
@@ -204,46 +199,8 @@ void separarValoresLED (String valoresLED) {
   
 }
 
-//void beep (int 9, float noteFrequency, long noteDuration)
-//{    
-//  int x;
-//  // Convert the frequency to microseconds
-//  float microsecondsPerWave = 1000000/noteFrequency;
-//  // Calculate how many HIGH/LOW cycles there are per millisecond
-//  float millisecondsPerCycle = 1000/(microsecondsPerWave * 2);
-//  // Multiply noteDuration * number or cycles per millisecond
-//  float loopTime = noteDuration * millisecondsPerCycle;
-//  // Play the note for the calculated loopTime.
-//  for (x=0;x<loopTime;x++)   
-//          {   
-//              digitalWrite(9,HIGH); 
-//              delayMicroseconds(microsecondsPerWave); 
-//              digitalWrite(9,LOW); 
-//              delayMicroseconds(microsecondsPerWave); 
-//          } 
-//}    
-//
-//void r2D2(){
-//  
-//          beep(9, note_A7,100); //A 
-//          beep(9, note_G7,100); //G 
-//          beep(9, note_E7,100); //E 
-//          beep(9, note_C7,100); //C
-//          beep(9, note_D7,100); //D 
-//          beep(9, note_B7,100); //B 
-//          beep(9, note_F7,100); //F 
-//          beep(9, note_C8,100); //C 
-//          beep(9, note_A7,100); //A 
-//          beep(9, note_G7,100); //G 
-//          beep(9, note_E7,100); //E 
-//          beep(9, note_C7,100); //C
-//          beep(9, note_D7,100); //D 
-//          beep(9, note_B7,100); //B 
-//          beep(9, note_F7,100); //F 
-//          beep(9, note_C8,100); //C 
-//}
-
 void playBeethoven () {
+// Primeras ocho notas de Para Elisa de Beethoven. Acompañan los avisos de notificaciones si el sonido está activo. Extraído de https://gist.github.com/spara/1832855.
 
   // play e4
   delay(150);
@@ -272,4 +229,3 @@ void playBeethoven () {
   delay(100);
   
 }
-
