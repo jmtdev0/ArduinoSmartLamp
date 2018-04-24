@@ -38,6 +38,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
+// Test
+
 public class LampControl extends AppCompatActivity {
 /* Clase responsable de la actividad principal de la aplicación, que muestra la ventana desde la que se accede
    a las demás y que almacena toda la información relevante para el correcto funcionamiento del conjunto completo.
